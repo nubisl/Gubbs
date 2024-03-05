@@ -1,0 +1,141 @@
+const http = require('http');
+const express = require('express');
+const { Client, MessageEmbed } = require('discord.js');
+const app = express();
+
+const client = new Client(); // Instancia de Client
+
+app.use(express.static('public'));
+
+app.get("/", function (request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
+
+app.get("/", (request, response) => {
+  response.sendStatus(200);
+});
+
+app.listen(process.env.PORT);
+
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`); 
+}, 280000);
+
+client.on('ready', () => {
+  console.log('Gubbs vivo! ');
+
+  // Estado
+  const presenciaConstante = {
+    status: 'online', 
+    activity: {
+      name: 'TU MANQUERA', 
+      type: 'WATCHING', 
+    },
+  
+};
+  
+ client.user.setPresence(presenciaConstante);
+});
+//////////////////CODIGO DEL BOT COMO TAL//////////////////
+
+
+client.on("message", (message) => {
+  /// SALUDO DE GUBBS A CORA
+  if (message.content.toLowerCase().includes("gubbs")) {
+    if (message.member.id === "255853689569411082") {
+      message.channel.send("Bienvenida, Señorita Stark");
+      message.channel.send("http://gph.is/1ilMyib");
+    }
+    //SALUDO DE GUBBS A SURI
+    if (message.member.id === "228233460823752704") {
+      message.channel.send("Hola Suri");
+      message.channel.send(
+        "https://media.giphy.com/media/1zjOOpgD3uF5OHg1Do/giphy.gif"
+      );
+    }
+    if (message.member.id === "199708197332844544") {
+      message.channel.send("Hola Nico");
+      message.channel.send(
+        "https://media.giphy.com/media/vccgHuzSVf8BppdZ1e/giphy.gif"
+      );
+    }
+    if (message.member.id === "438194985935044608") {
+      message.channel.send("Hola Manquillo");
+      message.channel.send("http://gph.is/2v3p1Pn");
+    }
+    if (message.member.id === "344682797153386497") {
+      message.channel.send("oa shiquito");
+      message.channel.send(
+        "https://media.giphy.com/media/fQGtVpdEN8wfqkdsDd/giphy.gif"
+      );
+    }
+    if (message.member.id === "403276741298225154") {
+      message.channel.send("Hola Eru");
+      message.channel.send(
+        "https://media.giphy.com/media/elCPRsF0NMVQTf40Bw/giphy.gif"
+      );
+    }
+    //SALUDO DE GUBBS A CUALQUIER RANDOM
+  }
+});
+
+client.on("message", (message) => {
+  if (message.content === "cora") {
+    message.channel.send("Excelente, uno más para Cora");
+  }
+  if (message.content === "alda") {
+    message.channel.send("¿Otro más, Alda?");
+  }
+  if (message.content === "yoha") {
+    message.channel.send("¿Otro más, Yøhane?");
+  }
+  if (message.content === "suri") {
+    message.channel.send("Excelente, uno más para Suri");
+  }
+  if (message.content === "nico") {
+    message.channel.send("Excelente, uno más para Nico");
+  }
+  if (message.content === "metall") {
+    message.channel.send("¿Otro más, Metall?");
+  }
+  if (message.content === "hitz") {
+    message.channel.send("WTF, ¿seguro?, ok...");
+  }
+  if (message.content === "metrox") {
+    message.channel.send("¿Otro más, Metrox?");
+  }
+  if (message.content === "eru") {
+    message.channel.send("Bueeena, Eru, incrementando puntoss");
+  }
+});
+
+client.on("message", (message) => {
+  if (message.content.startsWith("cup")) {
+    const embed = new MessageEmbed()
+      .setTitle(":trophy: Kenny Cup :trophy: ")
+      .setColor(0x51fac2)
+      .setDescription("Reputaciones con el piso, esta semana")
+      .addField("Exaltado", "Aldaron, MAAAAAAAAANCO")
+      .addField("Venerado", "Yøhane")
+      .addField("Honorable", "Ragna");
+    message.channel.send(embed);
+  }
+});
+
+client.on("message", (message) => {
+  if (message.content.startsWith("kc")) {
+    const embed = new MessageEmbed()
+      .setTitle(":trophy: Kenny Cup :trophy: ")
+      .setColor(0xffdc00)
+      .setDescription(
+        "Esta copa califica las manqueadas que nos mandamos \n los puntos se otorgan si mueren o al recibir mucho daño \n en M+"
+      )
+      .addField("Exaltado", "Tunelero nivel; Llegó a china")
+      .addField("Venerado", "Tunelero nivel; Cruza una montaña")
+      .addField("Honorable", "Tunelero");
+    message.channel.send(embed);
+  }
+});
+
+client.login("ME RESERVO EL TOKEN, PERO AQUÍ AÑADIRÍAS EL TOKEN DEL BOT ");
+
